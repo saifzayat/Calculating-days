@@ -1,1 +1,1 @@
-# my-first-projects
+# Calculating days
