@@ -1,0 +1,31 @@
+import React, { useState, useEffect } from "react";
+
+const CountdownToDate = () => {
+  const targetDate = new Date("2024-11-25");
+  const [daysRemaining, setDaysRemaining] = useState(0);
+
+  useEffect(() => {
+    const calculateDaysRemaining = () => {
+      const today = new Date();
+      const timeDifference = targetDate - today;
+      const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+      setDaysRemaining(daysDifference);
+    };
+
+    calculateDaysRemaining();
+
+    // Optional: Set up an interval to update the countdown every day
+    const intervalId = setInterval(calculateDaysRemaining, 1000 * 60 * 60 * 24);
+
+    return () => clearInterval(intervalId); // Clean up on unmount
+  }, []);
+
+  return (
+    <div>
+      <h1>Days until November 25, 2024:</h1>
+      <p>{daysRemaining} days</p>
+    </div>
+  );
+};
+
+export default CountdownToDate;
